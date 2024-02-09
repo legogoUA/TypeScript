@@ -17,7 +17,7 @@
 
 // ---> Primitive Types and Arrays 
 
-let value: any; // || sth type
+let value: number; // || sth type
 
 value = 123;
 

@@ -14,7 +14,7 @@ Custom and Union Types
 Tuple for types [sting, number, boolean]
 Enum and literal types (for example size sth)
 
-# FOURT
+# FOURTH
 Object Types and Interfaces
 
 
