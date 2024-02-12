@@ -2,7 +2,7 @@
 Notes about a modul TypeScript
 
 # FIRST 
-Description types for variables 
+Description types for variables --install 
 [getStartedTypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html)
 
 # SECOND 
@@ -17,4 +17,5 @@ Enum and literal types (for example size sth)
 # FOURTH
 Object Types and Interfaces
 
-
+# FIFTH
+Classes in TS
