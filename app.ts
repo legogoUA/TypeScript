@@ -281,6 +281,58 @@ abstract class Point2DExample implements Position2D { // use implement necessury
 
 // --> Generic Types
 
-const field = document.querySelector('input');
+const field = document.querySelector('input') as HTMLInputElement; // pay attention with this
+const field1 = <HTMLInputElement>document.querySelector('input');
+const field2 = document.querySelector<HTMLInputElement>('input'); //rusult must be InputElemennt
+const field3 = document.querySelectorAll('input');
+const field4 = [...document.querySelectorAll<HTMLInputElement>('.field')];
+// const field5: Array<HTMLInputElement>[...document.querySelectorAll<HTMLInputElement>('.field')];
 
-console.dir(field);
+
+
+if(field instanceof HTMLInputElement) { // or like this
+  console.dir(field.value);
+} else {
+  console.log(field);
+}
+
+function findAll<Item extends Element>(selector: string): CollectionGeneric<Item> {
+// function findAll<Item extends Element>(selector: keyof Item): CollectionGeneric<Item> {
+  return {
+    size: 0,
+    items: [...document.querySelectorAll<Item>(selector)],
+  }
+}
+
+const result1 = findAll<HTMLInputElement>(',field');
+const result2 = findAll<HTMLAnchorElement>('a');
+
+// Custom type with Generic
+
+type CollectionGeneric<Type> = {
+  size: number,
+  items: Type[],
+}
+
+// Generic it's Type which we pass like argument on time call to function <T, Item, F>
+// when we call Generic, we got it to some variables 
+// and can use for typization results of function
+// parametrs and in body function for typization all what we need 
+
+// --> ReturnType and typeof
+
+function addCalculate(a: number, b: number): number {
+  return a + b;
+}
+
+// work in contexts type
+// type; after: ; Inside<Generic>
+type Callbacks = typeof addCalculate;
+const multyple: Callbacks = (a, b) => a * b;
+
+type Result = ReturnType<Callbacks>; // or <typeof addCalculate>
+const resultOfFunction: Result = multyple(1, 2);
+
+console.log(result);
+
+// typeof we usually use for library Redux
