@@ -95,3 +95,62 @@ test({
 // how review type or interface -- for variables or string
 function test7(a) { } // readonly
 test7('x'); // xyz - sth another will make error
+// --------- FIFTH(Classes)
+// --> Classes in TS 
+/*abstract*/ class Point2Digital {
+    /*  public x: number; // default
+      private y: number; // use only here
+      q: number; // use in this classes or child this class (limiting property visibility) */
+    constructor(x, y, q) {
+        this.x = x;
+        this.y = y;
+        this.q = q;
+        // this.x = x; // this access make default if we use any modificators like "public" in constructor
+        // this.y = y;
+        // this.q = q;
+    }
+    printPosition() {
+        const { x, y, q } = this;
+        console.log(`(${x}, ${y}, ${q})`);
+    }
+}
+const a = new Point2Digital(1, 2, 3); // if  I wanna fordid create object class "Point2Digital" its make with modification abstract for class
+a.printPosition();
+console.log(a.x); // public - I can read x anywhere 
+class Point3D extends Point2Digital {
+    constructor(x, y, q = 0) {
+        super(x, y, q);
+    }
+    print3DPosition() {
+        const { x, y, q } = this;
+        console.log(`(${x}, ${y}, ${q})`);
+    }
+}
+class Place extends Point3D {
+    constructor(name, x, y) {
+        super(x, y);
+        this.name = name;
+    }
+}
+console.log(a.x);
+print2DInfo(a);
+function print2DInfo(point) {
+    const { x, y } = point;
+    console.log(`(${x}, ${y})`);
+}
+// how garanted for my class always contain 2 propertys?
+class Point2DExample {
+    constructor(x, y, q) {
+        this.x = x;
+        this.y = y;
+        this.q = q;
+    }
+    printPosition() {
+        const { x, y } = this;
+        console.log(`(${x}, ${y})`);
+    }
+}
+// --------- SIXTH(Generic Types)
+// --> Generic Types
+const field = document.querySelector('input');
+console.dir(field);

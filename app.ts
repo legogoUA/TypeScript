@@ -197,14 +197,14 @@ test7('x'); // xyz - sth another will make error
 
 // --> Classes in TS 
 
-abstract class Point2Digital { //if  I wanna fordid create object class, but its have basic interface this class
+/*abstract*/ class Point2Digital { //if  I wanna fordid create object class, but its have basic interface this class
 /*  public x: number; // default
   private y: number; // use only here
   q: number; // use in this classes or child this class (limiting property visibility) */
   constructor(
     public x: number, 
     public y: number, 
-    protected readonly q: number
+    public q: number,
   ) {  // access modifiers we can write here
     // this.x = x; // this access make default if we use any modificators like "public" in constructor
     // this.y = y;
@@ -212,13 +212,13 @@ abstract class Point2Digital { //if  I wanna fordid create object class, but its
   }
 
   printPosition() {
-    const { x, y } = this;
+    const { x, y, q } = this;
 
-    console.log(`(${x}, ${y})`);
+    console.log(`(${x}, ${y}, ${q})`);
   }
 }
 
-const a = new Point2Digital(1, 2); // if  I wanna fordid create object class "Point2Digital" its make with modification abstract for class
+const a = new Point2Digital(1, 2, 3); // if  I wanna fordid create object class "Point2Digital" its make with modification abstract for class
 a.printPosition();
 
 console.log(a.x);  // public - I can read x anywhere 
@@ -227,9 +227,9 @@ class Point3D extends Point2Digital {
   constructor(
     x: number, 
     y: number, 
-    public q = 0,
+    q = 0,
   ) {
-    super(x, y);
+    super(x, y, q);
   }
 
   print3DPosition() {
@@ -239,8 +239,8 @@ class Point3D extends Point2Digital {
   }
 }
 
-class Place extends Point2Digital {
-  constructor(public name: string, x: number, y: number) {
+class Place extends Point3D {
+  constructor(public name: number, x: number, y: number) {
     super(x, y);
   }
 }
@@ -264,7 +264,7 @@ function print2DInfo(point: Position2D) {  // using interface
 
 abstract class Point2DExample implements Position2D { // use implement necessury interface
   constructor(
-    // readonly x: number,  
+    readonly x: number,  
     public y: number, 
     protected readonly q: number
   ) {}
@@ -275,3 +275,12 @@ abstract class Point2DExample implements Position2D { // use implement necessury
     console.log(`(${x}, ${y})`);
   }
 }
+
+
+// --------- SIXTH(Generic Types)
+
+// --> Generic Types
+
+const field = document.querySelector('input');
+
+console.dir(field);
